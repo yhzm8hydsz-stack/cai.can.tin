@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cái Căn Tin 🍓</title>
+<style>
+:root{--pink:#ff7da8;--pink2:#ffe0eb;--cream:#fff9ee;--mint:#dff7e8;--ink:#493847;--gold:#ffca61}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#fff4f7,#f0fff6);color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif}
+button{font:inherit;cursor:pointer;border:0}
+.app{max-width:1200px;margin:auto;padding:14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#fff;border:3px solid #f8d6e2;border-radius:24px;padding:12px 18px;box-shadow:0 6px 0 #f3d4df}
+.brand{display:flex;align-items:center;gap:10px}.logo{font-size:36px;background:#ffe8f0;border-radius:18px;padding:5px 10px}.brand h1{font-size:clamp(20px,4vw,30px);margin:0}.brand p{margin:2px 0 0;color:#987d8f;font-size:13px}
+.stats{display:flex;gap:8px;flex-wrap:wrap}.pill{background:#fff4d9;border:2px solid #ffe2a0;border-radius:15px;padding:9px 13px;font-weight:800}.pill:nth-child(2){background:#e8f8ee;border-color:#c3ebd1}
+.hero{margin:16px 0;background:linear-gradient(120deg,#ffe1eb,#fff0cc 60%,#ddf8e7);border:3px solid white;border-radius:24px;padding:18px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:center;box-shadow:0 5px 0 #f1dce2}
+.hero h2{margin:0 0 7px;font-size:clamp(22px,4vw,34px)}.hero p{margin:0;line-height:1.5}.heroArt{font-size:clamp(52px,9vw,94px);text-align:center;filter:drop-shadow(0 5px 0 #ffffffaa)}
+.layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.8fr);gap:16px}
+.panel{background:#fff;border:3px solid #f7d9e4;border-radius:22px;padding:16px;box-shadow:0 5px 0 #f1dce2;min-width:0}.panel h3{margin:0 0 12px;font-size:20px}.customer{display:flex;gap:13px;align-items:center;background:#fff5f8;border-radius:18px;padding:12px;margin-bottom:13px}.avatar{font-size:44px;background:white;border-radius:15px;padding:5px}.customer strong{font-size:17px}.order{margin-top:5px;line-height:1.5}.timer{margin-left:auto;white-space:nowrap;background:#fff;border-radius:12px;padding:7px 9px;font-weight:800;color:#e75d8c}
+.menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.food{background:#fffaf0;border:2px solid #f7e4c6;border-radius:17px;padding:10px 5px;text-align:center;color:var(--ink);transition:.12s}.food:hover{transform:translateY(-2px);border-color:var(--pink)}.food:active{transform:scale(.97)}.food .emoji{font-size:36px;display:block}.food b{display:block;font-size:14px;margin:4px 0}.food small{color:#8a7180;font-weight:700}.food .stock{font-size:11px;color:#9d8a94}
+.cart{margin-top:14px;background:#f0fbf3;border:2px dashed #b8e8c8;border-radius:17px;padding:12px}.cartHead{display:flex;justify-content:space-between;align-items:center;gap:8px}.cartItems{min-height:32px;margin:8px 0;color:#796676;line-height:1.7}.action{border-radius:14px;padding:11px 15px;font-weight:900;background:var(--pink);color:white;box-shadow:0 4px 0 #e35f8d}.action:active{transform:translateY(2px);box-shadow:0 2px 0 #e35f8d}.action.secondary{background:#8bcfa6;box-shadow:0 4px 0 #64ad80}.action.ghost{background:#fff;color:#8a687b;border:2px solid #f3d8e3;box-shadow:none}.actions{display:flex;gap:8px;flex-wrap:wrap}.wide{width:100%;margin-top:8px}
+.side{display:flex;flex-direction:column;gap:16px}.moneybox{background:#fff5d9;border-color:#ffe4a5}.bigMoney{font-size:28px;font-weight:900;color:#a56b00}.stars{color:#ffb72e;letter-spacing:2px;font-size:21px}.review{border-top:1px solid #f5e1e7;padding:10px 0}.review:first-of-type{border-top:0}.reviewTop{display:flex;justify-content:space-between;gap:8px;font-weight:800}.review p{margin:5px 0 0;font-size:13px;line-height:1.45}.tag{font-size:11px;background:#f8e8ef;border-radius:20px;padding:4px 7px;white-space:nowrap}.task{font-size:14px;line-height:1.8}.progress{height:9px;background:#f7e6eb;border-radius:9px;overflow:hidden;margin:6px 0 10px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#ff82aa,#ffc76a);width:0%;transition:width .3s}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#493847;color:white;padding:12px 18px;border-radius:15px;box-shadow:0 5px 20px #0002;z-index:10;display:none;max-width:90vw;text-align:center}.toast.show{display:block;animation:pop .2s ease}@keyframes pop{from{transform:translate(-50%,10px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+footer{text-align:center;padding:20px;color:#a68b9a;font-size:12px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{grid-template-columns:1fr .45fr}.heroArt{font-size:55px}.menu{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{padding:12px}.customer{align-items:flex-start}.timer{font-size:12px}.stats{width:100%}.pill{flex:1;text-align:center}}
+@media(max-width:390px){.menu{grid-template-columns:repeat(2,minmax(0,1fr))}.heroArt{display:none}.hero{grid-template-columns:1fr}.brand p{font-size:11px}}
+
+.homeScreen{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:18px;background:linear-gradient(135deg,#ffdce9ee,#fff4dbee 55%,#dff8e8ee);backdrop-filter:blur(8px)}
+.homeCard{width:min(560px,100%);text-align:center;background:#fffdfb;border:4px solid white;border-radius:32px;padding:clamp(22px,5vw,42px);box-shadow:0 10px 0 #efcbd9,0 25px 80px #9d648333;position:relative;overflow:hidden}
+.homeCard:before,.homeCard:after{content:'✦';position:absolute;color:#ffc95f;font-size:34px}.homeCard:before{top:20px;left:24px}.homeCard:after{right:24px;top:55px;color:#ff8db2}
+.homeArt{font-size:clamp(64px,15vw,100px);line-height:1.3;filter:drop-shadow(0 5px 0 #ffe4ed)}.homeCard h1{font-size:clamp(30px,7vw,44px);margin:8px 0;color:#e85f91}.homeCard p{line-height:1.6;color:#866b7b;margin:8px auto 20px;max-width:390px}.homeBadges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:15px 0 22px}.homeBadges span{background:#fff0f5;border-radius:99px;padding:8px 12px;font-size:13px;font-weight:800}.startBtn{font-size:19px;padding:15px 30px;border-radius:18px;background:#ff7da8;color:white;font-weight:900;box-shadow:0 5px 0 #e45d8b;width:min(100%,300px)}.startBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #e45d8b}.moneyFly{position:fixed;z-index:30;pointer-events:none;font-size:27px;font-weight:900;color:#e6a000;text-shadow:0 2px white,0 0 8px #fff7b7;animation:moneyUp 1.15s ease-out forwards;white-space:nowrap}@keyframes moneyUp{0%{opacity:0;transform:translateY(15px) scale(.65) rotate(-8deg)}15%{opacity:1}100%{opacity:0;transform:translateY(-125px) scale(1.25) rotate(12deg)}}
+.soundBtn{border:2px solid #f3d8e3;background:#fff;border-radius:13px;padding:8px 10px;font-weight:800;color:#8a687b}
+@media(max-width:420px){.homeCard{padding:24px 17px}.homeCard:before{left:12px;top:10px}.homeCard:after{right:12px;top:18px}}
+</style>
+</head>
+<body>
+<div class="homeScreen" id="homeScreen"><div class="homeCard"><div class="homeArt">🏫🍜🧋</div><h1>Cái Căn Tin</h1><p>Giờ ra chơi đến rồi! Nhận order, chuẩn bị đúng món, thu tiền và khiến khách hàng vui vẻ để nhận thật nhiều sao nha! 💗</p><div class="homeBadges"><span>🍓 Game 2D dễ thương</span><span>⭐ Đánh giá khách hàng</span><span>🪙 Kiếm tiền xu</span></div><button class="startBtn" id="startBtn">▶ BẮT ĐẦU CHƠI</button><p style="font-size:12px;margin-bottom:0">Mẹo: phục vụ đúng món và thật nhanh để nhận nhiều sao hơn!</p></div></div>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="logo">🍓</div><div><h1>Cái Căn Tin</h1><p>Ngon • Vui • Khách nào cũng mê!</p></div></div>
+  <div class="stats"><button class="soundBtn" id="soundBtn" aria-label="Bật tắt âm thanh">🔊 Âm thanh</button><div class="pill">🪙 <span id="coins">100.000</span>đ</div><div class="pill">⭐ Uy tín <span id="rep">0</span></div><div class="pill">🏅 Cấp <span id="level">1</span></div></div>
+</header>
+<section class="hero"><div><h2>Chào chủ căn tin! 💗</h2><p>Giờ ra chơi bắt đầu rồi! Xem khách muốn ăn gì, chọn đúng món, tính tiền và nhận đánh giá nhé.</p></div><div class="heroArt">🏫🍜🧋</div></section>
+<div class="layout">
+  <main class="panel">
+    <h3>🧑‍🍳 Khách hàng đang chờ</h3>
+    <div class="customer"><div class="avatar" id="avatar">👧🏻</div><div style="flex:1;min-width:0"><strong id="customerName">Bạn Mai Anh</strong><div class="order" id="orderText">Đang xem thực đơn...</div></div><div class="timer">⏰ <span id="timer">30</span>s</div></div>
+    <h3>🍱 Chọn món để phục vụ</h3>
+    <div class="menu" id="menu"></div>
+    <div class="cart"><div class="cartHead"><strong>🧺 Khay của bạn</strong><strong id="cartTotal">0đ</strong></div><div class="cartItems" id="cartItems">Chưa có món nào. Bấm vào món ở phía trên để thêm nhé!</div><div class="actions"><button class="action ghost" id="clearBtn">🗑️ Xóa khay</button><button class="action secondary" id="serveBtn">🛎️ Giao món & tính tiền</button></div></div>
+  </main>
+  <aside class="side">
+    <section class="panel moneybox"><h3>💰 Sổ doanh thu</h3><div class="bigMoney"><span id="revenue">0</span>đ</div><div>Đơn đã phục vụ: <b id="served">0</b></div><div style="margin-top:9px">Độ hài lòng trung bình</div><div class="stars" id="averageStars">☆☆☆☆☆</div></section>
+    <section class="panel"><h3>🎯 Nhiệm vụ hôm nay</h3><div class="task">Bán được 5 đơn hàng <b id="taskOrders">0/5</b><div class="progress"><span id="orderProgress"></span></div>Kiếm 100.000đ doanh thu <b id="taskRevenue">0/100.000đ</b><div class="progress"><span id="revenueProgress"></span></div>Nhận 3 đánh giá <b id="taskReviews">0/3</b><div class="progress"><span id="reviewProgress"></span></div></div></section>
+    <section class="panel"><h3>💌 Đánh giá khách hàng</h3><div id="reviews"><p style="color:#a68b9a;font-size:14px">Phục vụ đơn đầu tiên để nhận đánh giá nha!</p></div><button class="action ghost wide" id="nextBtn">➡️ Khách tiếp theo</button></section>
+  </aside>
+</div>
+<footer>🍓 Cái Căn Tin — game mô phỏng vui vẻ, tiền trong game không có giá trị thật.</footer>
+</div><div class="toast" id="toast"></div>
+<script>
+const foods=[
+{id:'banhmi',name:'Bánh mì',emoji:'🥖',price:15000},
+{id:'mi',name:'Mì trứng',emoji:'🍜',price:20000},
+{id:'tradao',name:'Trà đào',emoji:'🍑',price:18000},
+{id:'cavien',name:'Cá viên chiên',emoji:'🍢',price:12000},
+{id:'sua',name:'Sữa tươi',emoji:'🥛',price:15000},
+{id:'trasua',name:'Trà sữa',emoji:'🧋',price:20000},
+{id:'xucxich',name:'Xúc xích',emoji:'🌭',price:10000},
+{id:'banhngot',name:'Bánh ngọt',emoji:'🧁',price:17000},
+{id:'nuoc',name:'Nước suối',emoji:'💧',price:8000}
+];
+const customers=[{name:'Bạn Mai Anh',avatar:'👧🏻'},{name:'Bạn Minh Khang',avatar:'👦🏻'},{name:'Bạn Bảo Ngọc',avatar:'👧🏽'},{name:'Bạn Gia Huy',avatar:'👦🏽'},{name:'Cô giáo chủ nhiệm',avatar:'👩🏻‍🏫'},{name:'Bạn Khánh Linh',avatar:'👧🏼'},{name:'Bạn Đức Anh',avatar:'🧒🏻'}];
+let coins=100000,revenue=0,served=0,rep=0,reviewCount=0,cart={},current=null,time=30,timerId=null,orderNum=0;
+const $=id=>document.getElementById(id);
+const money=n=>Math.round(n).toLocaleString('vi-VN');
+let soundOn=true;let audioCtx=null;
+function playSaleSound(){if(!soundOn)return;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();const now=audioCtx.currentTime;[[880,0,.12],[1175,.11,.15],[1568,.23,.22]].forEach(([freq,delay,dur])=>{const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.setValueAtTime(freq,now+delay);gain.gain.setValueAtTime(.0001,now+delay);gain.gain.exponentialRampToValueAtTime(.14,now+delay+.02);gain.gain.exponentialRampToValueAtTime(.0001,now+delay+dur);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(now+delay);osc.stop(now+delay+dur+.02)});}catch(e){}}
+function moneyEffect(amount){const el=document.createElement('div');el.className='moneyFly';el.textContent='🪙 +'+money(amount)+'đ';el.style.left=(25+Math.random()*45)+'vw';el.style.top=(48+Math.random()*20)+'vh';document.body.appendChild(el);setTimeout(()=>el.remove(),1300);for(let i=0;i<5;i++){const coin=document.createElement('div');coin.className='moneyFly';coin.textContent='✨';coin.style.fontSize='20px';coin.style.left=(35+Math.random()*35)+'vw';coin.style.top=(55+Math.random()*10)+'vh';coin.style.animationDelay=(i*.04)+'s';document.body.appendChild(coin);setTimeout(()=>coin.remove(),1400)}}
+function toast(s){$('toast').textContent=s;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
+function renderMenu(){$('menu').innerHTML=foods.map(f=>`<button class="food" data-id="${f.id}"><span class="emoji">${f.emoji}</span><b>${f.name}</b><small>${money(f.price)}đ</small></button>`).join('');document.querySelectorAll('.food').forEach(b=>b.onclick=()=>addFood(b.dataset.id))}
+function newCustomer(){clearInterval(timerId);cart={};orderNum++;let c=customers[Math.floor(Math.random()*customers.length)];let count=Math.random()<.5?1:2;let chosen=[...foods].sort(()=>Math.random()-.5).slice(0,count);let items={};chosen.forEach(f=>items[f.id]=Math.random()<.2?2:1);current={...c,items,done:false};time=30;$('avatar').textContent=c.avatar;$('customerName').textContent=c.name;$('orderText').innerHTML='Mình muốn: <b>'+Object.entries(items).map(([id,n])=>{let f=foods.find(x=>x.id===id);return `${f.emoji} ${f.name}${n>1?' × '+n:''}`}).join(' + ')+'</b>';updateCart();startTimer();$('nextBtn').textContent='➡️ Khách tiếp theo';}
+function startTimer(){ $('timer').textContent=time;timerId=setInterval(()=>{if(time>0){time--;$('timer').textContent=time}else{clearInterval(timerId);$('timer').textContent='0';if(current&&!current.done)toast('⏰ Khách đang sốt ruột đó! Giao món nhanh nha m.')}},1000)}
+function addFood(id){if(!current||current.done){toast('Bấm “Khách tiếp theo” để nhận đơn mới nha!');return}cart[id]=(cart[id]||0)+1;updateCart()}
+function updateCart(){let total=0,parts=[];for(let [id,n] of Object.entries(cart)){let f=foods.find(x=>x.id===id);total+=f.price*n;parts.push(`${f.emoji} ${f.name} × ${n}`)}$('cartTotal').textContent=money(total)+'đ';$('cartItems').textContent=parts.length?parts.join(' · '):'Chưa có món nào. Bấm vào món ở phía trên để thêm nhé!'}
+function serve(){if(!current||current.done){toast('Nhận khách mới trước nha!');return}if(!Object.keys(cart).length){toast('M chưa chọn món nào hết 😭');return}
+let wanted=current.items, correct=true;for(let id of new Set([...Object.keys(wanted),...Object.keys(cart)])){if((wanted[id]||0)!==(cart[id]||0))correct=false}
+let total=Object.entries(cart).reduce((s,[id,n])=>s+foods.find(f=>f.id===id).price*n,0);
+if(!correct){toast('Chưa đúng đơn rồi! Kiểm tra lại món và số lượng nha.');return}
+if(time===0)toast('Phục vụ hơi chậm, nhưng khách vẫn nhận món nè!');
+current.done=true;clearInterval(timerId);coins+=total;revenue+=total;served++;playSaleSound();moneyEffect(total);let stars=time>18?5:time>9?4:3;if(time===0)stars=2;rep+=stars;reviewCount++;
+$('reviews').innerHTML=`<div class="review"><div class="reviewTop"><span>${current.avatar} ${current.name}</span><span class="tag">${stars}/5 ⭐</span></div><div class="stars">${'★'.repeat(stars)}${'☆'.repeat(5-stars)}</div><p>${stars===5?'Món ngon lắm luôn! Phục vụ nhanh nữa 💖':stars>=4?'Đồ ăn ổn áp, lần sau mình sẽ ghé tiếp nha!':'Món đúng rồi, nhưng lần sau phục vụ nhanh hơn nhé!'}</p></div>`+$('reviews').innerHTML;
+if($('reviews').children.length>3)$('reviews').lastElementChild.remove();
+updateStats();toast(`Đơn chính xác! +${money(total)}đ và ${stars} sao ✨`);$('nextBtn').textContent='➡️ Nhận khách mới';}
+function updateStats(){$('coins').textContent=money(coins);$('revenue').textContent=money(revenue);$('served').textContent=served;$('rep').textContent=rep;$('level').textContent=1+Math.floor(served/5);$('averageStars').textContent=reviewCount?'★'.repeat(Math.round(rep/reviewCount))+'☆'.repeat(5-Math.round(rep/reviewCount)):'☆☆☆☆☆';$('taskOrders').textContent=Math.min(served,5)+'/5';$('orderProgress').style.width=Math.min(served/5*100,100)+'%';$('taskRevenue').textContent=money(Math.min(revenue,100000))+'/100.000đ';$('revenueProgress').style.width=Math.min(revenue/100000*100,100)+'%';$('taskReviews').textContent=Math.min(reviewCount,3)+'/3';$('reviewProgress').style.width=Math.min(reviewCount/3*100,100)+'%'}
+$('clearBtn').onclick=()=>{cart={};updateCart();toast('Đã dọn khay!')};$('serveBtn').onclick=serve;$('nextBtn').onclick=()=>{if(current&&!current.done&&Object.keys(cart).length){if(!confirm('Khách này chưa được phục vụ. Vẫn đổi khách nha?'))return}newCustomer();toast('Khách mới tới rồi!')};
+renderMenu();updateStats();
+$('startBtn').onclick=()=>{$('homeScreen').style.display='none';newCustomer();toast('Bắt đầu ca bán hàng nào! 🍓')};
+$('soundBtn').onclick=()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'🔊 Âm thanh':'🔇 Tắt tiếng';if(soundOn)playSaleSound()};
+</script>
+</body></html>
